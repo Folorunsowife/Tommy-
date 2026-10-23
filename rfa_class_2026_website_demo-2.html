@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#172554">
+<title>RFA Class of 2026 Alumni Chapter</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--purple:#7c3aed;--gold:#fbbf24;--ink:#182033;--muted:#65708a;--paper:#fff;--soft:#f4f6ff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eef2ff,#fff7ed 55%,#f5f3ff)}
+header{padding:28px 18px 40px;text-align:center;color:#fff;background:linear-gradient(115deg,var(--navy),var(--purple),var(--blue));border-radius:0 0 28px 28px}
+.badge{display:inline-block;border:1px solid #ffffff70;border-radius:999px;padding:7px 12px;font-size:.8rem;letter-spacing:.08em}
+h1{font-size:clamp(1.8rem,6vw,3.2rem);line-height:1.08;margin:18px auto 10px;max-width:900px}
+.tagline{font-size:1.05rem;color:#fff4c7;font-weight:700}.intro{max-width:650px;margin:14px auto 0;color:#e7eaff;line-height:1.6}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px auto 0}
+button,.button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:11px 15px;font-weight:700;background:var(--blue);color:white}
+nav button{background:#ffffff1f;border:1px solid #ffffff55}button:hover{filter:brightness(.96)}button:focus,input:focus,textarea:focus{outline:3px solid #fbbf2488;outline-offset:2px}
+main{max-width:1050px;margin:24px auto;padding:0 15px 45px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.card{background:#ffffffed;border:1px solid #e3e7f5;border-radius:20px;padding:20px;box-shadow:0 12px 32px #1725540d}
+.card h2{margin:0 0 8px;color:var(--navy)}.muted{color:var(--muted);font-size:.94rem;line-height:1.5}
+label{display:block;font-weight:700;margin:13px 0 6px}input,textarea,select{width:100%;border:1px solid #cbd3e8;border-radius:11px;padding:12px;font:inherit;background:white}textarea{min-height:100px;resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}.notice{background:#fff7d6;border:1px solid #f2d16b;padding:12px;border-radius:12px;color:#674b00;font-size:.9rem;line-height:1.45}
+.list{display:grid;gap:10px;margin-top:14px}.item{border:1px solid #e1e6f4;background:#fff;border-radius:13px;padding:13px}.item strong{display:block;color:var(--navy)}.pill{display:inline-block;border-radius:999px;background:#ede9fe;color:#5b21b6;padding:4px 9px;font-size:.78rem}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:.88rem}
+.hidden{display:none!important}.small{font-size:.82rem}
+</style>
+</head>
+<body>
+<header>
+  <span class="badge">🎓 ALUMNI • CLASS OF 2026</span>
+  <h1>RFA CLASS OF 2026<br>ALUMNI CHAPTER</h1>
+  <div class="tagline">❤️ FOREVER FAMILY &nbsp; • &nbsp; 🔥 THE LEGENDS</div>
+  <p class="intro">One class. Many memories. A family that keeps growing. Welcome to our colourful home for classmates, nicknames, and positive messages.</p>
+  <nav>
+    <button onclick="go('directory')">👥 Class Directory</button>
+    <button onclick="go('messages')">💌 Anonymous Messages</button>
+    <button onclick="go('wall')">📣 Class Wall</button>
+  </nav>
+</header>
+<main>
+  <div class="notice">✨ <strong>Demo version:</strong> this page saves entries only in this browser. It does not yet share submissions between classmates or provide real accounts. Do not enter phone numbers, passwords, addresses, or other private information. Connect a secure database and moderation before publishing the messaging feature.</div>
+  <section class="grid" style="margin-top:16px">
+    <article class="card" id="directory">
+      <h2>👥 Class Directory</h2>
+      <p class="muted">Add your name and nickname to the demo directory. Only share details you are comfortable making public.</p>
+      <form id="memberForm">
+        <label for="fullName">Name</label><input id="fullName" maxlength="70" required placeholder="Your name">
+        <label for="nickname">Nickname</label><input id="nickname" maxlength="40" required placeholder="What classmates call you">
+        <label><input type="checkbox" id="consent" required style="width:auto"> I agree this name and nickname may appear in the class directory.</label>
+        <button type="submit">Add to Directory</button>
+      </form>
+      <div class="list" id="membersList"></div>
+    </article>
+    <article class="card" id="messages">
+      <h2>💌 Anonymous Messages</h2>
+      <p class="muted">Send a kind note to one classmate or to everyone. Your name is not shown in the message list on this demo.</p>
+      <form id="messageForm">
+        <label for="recipient">Send to</label>
+        <select id="recipient"><option value="Everyone in the class">Everyone in the class</option></select>
+        <label for="messageText">Your message</label><textarea id="messageText" maxlength="500" required placeholder="Share a compliment, encouragement, or friendly memory…"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p class="small muted">Please be respectful. No bullying, threats, private details, or unwanted confessions. This demo has a report button, but it does not send reports to a moderator.</p>
+    </article>
+  </section>
+  <section class="card" id="wall" style="margin-top:16px">
+    <h2>📣 Class Wall</h2>
+    <p class="muted">Messages appear here in this browser for demonstration.</p>
+    <div class="list" id="messagesList"><p class="muted">No messages yet. Be the first to share something positive!</p></div>
+  </section>
+  <footer>RFA Class of 2026 Alumni Chapter • Forever Family • The Legends<br>Made for classmates, with respect and good memories. 💙💜💛</footer>
+</main>
+<script>
+const read=(key)=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return []}};
+const write=(key,val)=>localStorage.setItem(key,JSON.stringify(val));
+const esc=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function renderMembers(){
+ const members=read('rfaMembers');const box=document.getElementById('membersList');
+ box.innerHTML=members.length?members.map(m=>`<div class="item"><strong>${esc(m.name)}</strong><span class="pill">Nickname: ${esc(m.nick)}</span></div>`).join(''):'<p class="muted">No classmates added yet.</p>';
+ const select=document.getElementById('recipient');const current=select.value;
+ select.innerHTML='<option value="Everyone in the class">Everyone in the class</option>'+members.map(m=>`<option value="${esc(m.name)}">${esc(m.name)} (${esc(m.nick)})</option>`).join('');
+ if([...select.options].some(o=>o.value===current))select.value=current;
+}
+function renderMessages(){
+ const msgs=read('rfaMessages');const box=document.getElementById('messagesList');
+ box.innerHTML=msgs.length?msgs.slice().reverse().map((m,i)=>`<div class="item"><span class="pill">To: ${esc(m.to)}</span><p>${esc(m.text).replace(/\n/g,'<br>')}</p><button type="button" onclick="reportMessage(${msgs.length-1-i})" style="background:#7c2d12">⚑ Report</button></div>`).join(''):'<p class="muted">No messages yet. Be the first to share something positive!</p>';
+}
+document.getElementById('memberForm').addEventListener('submit',e=>{
+ e.preventDefault();const name=document.getElementById('fullName').value.trim(),nick=document.getElementById('nickname').value.trim();
+ if(!name||!nick)return;const members=read('rfaMembers');
+ if(members.some(m=>m.name.toLowerCase()===name.toLowerCase())){alert('That name is already in this browser demo.');return}
+ members.push({name,nick});write('rfaMembers',members);e.target.reset();renderMembers();
+});
+document.getElementById('messageForm').addEventListener('submit',e=>{
+ e.preventDefault();const text=document.getElementById('messageText').value.trim(),to=document.getElementById('recipient').value;
+ if(!text)return;const msgs=read('rfaMessages');msgs.push({to,text,reported:false});write('rfaMessages',msgs);document.getElementById('messageText').value='';renderMessages();go('wall');
+});
+function reportMessage(index){
+ const msgs=read('rfaMessages');if(!msgs[index])return;
+ msgs[index].reported=true;write('rfaMessages',msgs);alert('Marked for review in this browser demo. In a live site, reports must be sent to a trusted moderator.');renderMessages();
+}
+renderMembers();renderMessages();
+</script>
+</body>
+</html>
